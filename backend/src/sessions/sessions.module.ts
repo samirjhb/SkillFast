@@ -7,9 +7,11 @@ import { Session, SessionSchema } from '../schemas/session.schema';
 import { ExpertProfile, ExpertProfileSchema } from '../schemas/expert-profile.schema';
 import { ExpertsModule } from '../experts/experts.module';
 import { UsersModule } from '../users/users.module';
+import { AuthModule } from '@/auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     ExpertsModule,
     UsersModule,
     MongooseModule.forFeature([

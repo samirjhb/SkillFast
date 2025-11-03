@@ -1,0 +1,17 @@
+<div class="expert-detail-container">
+  <div class="container">
+    <div class="expert-detail" *ngIf="expert">
+      <h1>{{ expert.userId?.firstName }} {{ expert.userId?.lastName }}</h1>
+      <p>{{ expert.bio }}</p>
+      <div class="expert-info">
+        <p><strong>Tarifa:</strong> ${{ expert.ratePerMinute }}/min</p>
+        <p><strong>Rating:</strong> ⭐ {{ expert.averageRating || 'N/A' }}</p>
+        <p><strong>Categorías:</strong> {{ expert.categories?.join(', ') || 'N/A' }}</p>
+        <p><strong>Skills:</strong> {{ expert.skills?.join(', ') || 'N/A' }}</p>
+      </div>
+      <button class="btn btn-primary" (click)="startSession('chat')">Iniciar Chat</button>
+      <button class="btn btn-primary" (click)="startSession('video')">Iniciar Videollamada</button>
+    </div>
+  </div>
+</div>
+

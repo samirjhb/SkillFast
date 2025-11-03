@@ -91,8 +91,9 @@ export class AuthService {
     const payload = { sub: userId, email };
 
     const accessToken = this.jwtService.sign(payload);
+    const refreshSecret = this.configService.get<string>('JWT_REFRESH_SECRET') || 'skillfast-super-secret-refresh-key-change-in-production';
     const refreshToken = this.jwtService.sign(payload, {
-      secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+      secret: refreshSecret,
       expiresIn: this.configService.get<string>('JWT_REFRESH_EXPIRES_IN') || '7d',
     });
 
@@ -104,8 +105,9 @@ export class AuthService {
 
   async refreshToken(refreshToken: string) {
     try {
+      const refreshSecret = this.configService.get<string>('JWT_REFRESH_SECRET') || 'skillfast-super-secret-refresh-key-change-in-production';
       const payload = this.jwtService.verify(refreshToken, {
-        secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+        secret: refreshSecret,
       });
 
       const user = await this.userModel.findById(payload.sub);

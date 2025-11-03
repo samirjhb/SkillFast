@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
+  standalone: false,
   template: `
     <div class="home-container">
       <section class="hero">

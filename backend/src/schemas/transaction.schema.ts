@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
+import mongoose from 'mongoose';
 
 export type TransactionDocument = Transaction & Document;
 
@@ -50,9 +51,8 @@ export class Transaction {
   @Prop()
   description?: string;
 
-  @Prop()
+  @Prop({ type: mongoose.Schema.Types.Mixed })
   metadata?: Record<string, any>;
 }
 
 export const TransactionSchema = SchemaFactory.createForClass(Transaction);
-

@@ -1,52 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-expert-detail',
-  template: `
-    <div class="expert-detail-container">
-      <div class="container">
-        <div class="expert-detail" *ngIf="expert">
-          <h1>{{ expert.userId?.firstName }} {{ expert.userId?.lastName }}</h1>
-          <p>{{ expert.bio }}</p>
-          <div class="expert-info">
-            <p><strong>Tarifa:</strong> ${{ expert.ratePerMinute }}/min</p>
-            <p><strong>Rating:</strong> ⭐ {{ expert.averageRating || 'N/A' }}</p>
-            <p><strong>Categorías:</strong> {{ expert.categories.join(', ') }}</p>
-            <p><strong>Skills:</strong> {{ expert.skills.join(', ') }}</p>
-          </div>
-          <button class="btn btn-primary" (click)="startSession('chat')">Iniciar Chat</button>
-          <button class="btn btn-primary" (click)="startSession('video')">Iniciar Videollamada</button>
-        </div>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .expert-detail-container {
-      padding: 40px 0;
-    }
-    .expert-detail {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .expert-info {
-      margin: 20px 0;
-    }
-    .btn {
-      margin-right: 10px;
-    }
-  `],
+  standalone: false,
+  templateUrl: './expert-detail.component.html',
+  styleUrls: ['./expert-detail.component.css'],
 })
 export class ExpertDetailComponent implements OnInit {
-  expert: any;
+  expert: any = null;
   expertId: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -59,6 +28,9 @@ export class ExpertDetailComponent implements OnInit {
       next: (data: any) => {
         this.expert = data;
       },
+      error: (err) => {
+        console.error('Error loading expert:', err);
+      },
     });
   }
 
@@ -67,4 +39,3 @@ export class ExpertDetailComponent implements OnInit {
     console.log('Starting session:', type);
   }
 }
-

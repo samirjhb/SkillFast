@@ -1,0 +1,16 @@
+.expert-detail-container {
+  padding: 40px 0;
+}
+.expert-detail {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.expert-info {
+  margin: 20px 0;
+}
+.btn {
+  margin-right: 10px;
+}
+

@@ -1,0 +1,27 @@
+.experts-container {
+  padding: 40px 0;
+}
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.filters input,
+.filters select {
+  flex: 1;
+  min-width: 200px;
+}
+.experts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.expert-card {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.expert-card:hover {
+  transform: translateY(-5px);
+}
+

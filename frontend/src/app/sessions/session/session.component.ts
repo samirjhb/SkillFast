@@ -5,6 +5,7 @@ import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-session',
+  standalone: false,
   template: `
     <div class="session-container">
       <div class="session-header">
